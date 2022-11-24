@@ -49,10 +49,9 @@ export class WeatherService {
   }
 
   private emitTemperatureValue() {
-    let randomTemp = Math.floor(Math.random() * 40 + 1);
-    randomTemp *= Math.round(Math.random()) ? 1 : -1;
-
-    this.temperatureEmitter.emit(randomTemp);
+    this.temperatureEmitter.emit(
+      Math.floor(Math.random() * 40 + 1) * (Math.round(Math.random()) ? 1 : -1)
+    );
 
     setTimeout(
       this.emitTemperatureValue.bind(this),
