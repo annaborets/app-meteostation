@@ -16,16 +16,31 @@ export class WeatherOutputComponent implements OnInit, OnDestroy {
     airPressure: 0
   };
   private subscriptions: Subscription[] = [];
-
+  private start!: Date;
   constructor(private weatherService: WeatherService) {}
 
   ngOnInit(): void {
     this.getWeather();
+    this.weatherService.startEmitting();
   }
 
+  // private getWeather() {
+  //   this.subscriptions.push(
+  //     this.weatherService.generateResult().subscribe((items) => {
+  //       this.meteostationOutput = items;
+  //     })
+  //   );
+  // }
+
   private getWeather() {
+    this.start = new Date();
+
     this.subscriptions.push(
       this.weatherService.generateResult().subscribe((items) => {
+        console.log('time:');
+        console.log((new Date().getTime() - this.start.getTime()) / 1000);
+        console.log('items');
+        console.log(items);
         this.meteostationOutput = items;
       })
     );
