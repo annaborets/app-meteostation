@@ -31,6 +31,15 @@ export class WeatherService {
     this.emitHumidityValue();
   }
 
+  public init(): Promise<Boolean> {
+    return new Promise<Boolean>((resolve) => {
+      setTimeout(() => {
+        console.log('Service is running');
+        resolve(true);
+      }, 1000);
+    });
+  }
+
   public generateResult() {
     return combineLatest([
       this.temperatureEmitter.pipe(onDormant(1000, 'N/A')),
