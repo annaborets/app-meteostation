@@ -9,7 +9,6 @@ import { WeatherService } from './services/weather.service';
   declarations: [AppComponent, WeatherOutputComponent],
   imports: [BrowserModule],
   providers: [
-    WeatherService,
     {
       provide: APP_INITIALIZER,
       useFactory: (service: WeatherService) => () => {

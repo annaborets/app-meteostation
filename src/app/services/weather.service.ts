@@ -25,19 +25,10 @@ export class WeatherService {
 
   humidityEmitter = new EventEmitter<number | string>();
 
-  constructor() {
+  public init() {
     this.emitTemperatureValue();
     this.emitAirPressureValue();
     this.emitHumidityValue();
-  }
-
-  public init(): Promise<Boolean> {
-    return new Promise<Boolean>((resolve) => {
-      setTimeout(() => {
-        console.log('Service is running');
-        resolve(true);
-      }, 1000);
-    });
   }
 
   public generateResult() {
